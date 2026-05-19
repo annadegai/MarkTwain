@@ -1,0 +1,787 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Марк Твен — Том Сойер. Урок 4 класс</title>
+  <style>
+    :root {
+      --bg: #f5f0e8;
+      --paper: #fffdf8;
+      --card: #fdf6ec;
+      --accent: #b8720a;
+      --accent2: #8a5000;
+      --accent3: #c0522a;
+      --text: #2a1d0a;
+      --muted: #7a6548;
+      --sub: #4a3820;
+      --border: rgba(160,110,30,0.18);
+      --shadow: 0 8px 32px rgba(120,80,20,0.10);
+      --r: 18px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #f5f0e8;
+      color: var(--text);
+      font-family: Georgia, serif;
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: linear-gradient(135deg, #fff8ed 0%, #fdf0d8 60%, #fae8c0 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 44px 24px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 320px; height: 320px;
+      background: #e8a020;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.18;
+      pointer-events: none;
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: -60px;
+      width: 250px; height: 250px;
+      background: #c0522a;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.12;
+      pointer-events: none;
+    }
+    .header-emoji { font-size: 56px; display: block; margin-bottom: 12px; }
+    .header h1 {
+      font-size: clamp(22px, 5vw, 40px);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #8a5000, #b8720a, #8a5000);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .header .sub {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-family: Arial, sans-serif;
+    }
+
+    /* ── NAV ── */
+    .toc {
+      background: #fffdf8;
+      border-bottom: 1px solid rgba(160,110,30,0.18);
+      padding: 0 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      justify-content: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .toc a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 12px;
+      font-family: Arial, sans-serif;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 14px 12px;
+      border-bottom: 2px solid transparent;
+      transition: color .2s, border-color .2s;
+      white-space: nowrap;
+    }
+    .toc a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+    /* ── WRAP ── */
+    .wrap { max-width: 860px; margin: 0 auto; padding: 28px 20px 60px; }
+
+    /* ── SECTION ── */
+    .section {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+    .label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--accent);
+      font-family: Arial, sans-serif;
+      margin-bottom: 7px;
+    }
+    .section h2 {
+      font-size: clamp(18px, 3.5vw, 26px);
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .section h3 {
+      font-size: 16px;
+      color: var(--accent2);
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    p { font-size: 15px; color: var(--sub); margin-bottom: 12px; }
+    ul, ol { padding-left: 22px; font-size: 15px; color: var(--sub); font-family: Arial, sans-serif; }
+    li { margin-bottom: 8px; }
+    li strong { color: var(--text); }
+
+    /* ── GRID CARDS ── */
+    .grid2 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 13px;
+      margin-top: 4px;
+    }
+    @media (max-width: 900px) {
+      .grid2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 560px) {
+      .grid2 { grid-template-columns: 1fr; }
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 15px;
+    }
+    .card-icon { font-size: 24px; margin-bottom: 6px; }
+    .card-title { font-size: 13px; font-weight: 700; color: var(--accent2); margin-bottom: 4px; font-family: Arial, sans-serif; }
+    .card-text { font-size: 13px; color: var(--muted); font-family: Arial, sans-serif; line-height: 1.55; }
+
+    /* ── VIDEO ── */
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      border-radius: 13px;
+      overflow: hidden;
+      background: #0a0603;
+      border: 1px solid var(--border);
+      margin-top: 16px;
+    }
+    .video-wrap iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+
+    /* ── QUIZ ── */
+    .quiz-list { display: flex; flex-direction: column; gap: 13px; }
+    .q {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 18px;
+    }
+    .q-text { font-size: 14px; font-weight: 700; color: var(--text); font-family: Arial, sans-serif; margin-bottom: 10px; }
+    .q-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+    .q-btn {
+      background: rgba(184,114,10,0.07);
+      border: 1px solid rgba(184,114,10,0.22);
+      color: #2a1d0a;
+      border-radius: 10px;
+      padding: 7px 14px;
+      font-size: 13px;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      transition: all .2s;
+    }
+    .q-btn:hover { background: rgba(184,114,10,0.14); }
+    .q-btn.correct { background: rgba(34,197,94,0.18); border-color: rgba(34,197,94,0.5); color: #86efac; }
+    .q-btn.wrong { background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.5); color: #fca5a5; }
+    .q-btn:disabled { cursor: default; }
+
+    /* ── OPEN QUESTION ── */
+    .open-q {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 4px solid #b8720a;
+      border-radius: 12px;
+      padding: 13px 16px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      color: var(--sub);
+    }
+    .open-q .num { color: var(--accent); font-weight: 700; font-size: 16px; flex-shrink: 0; }
+
+    /* ── TEXT CHAPTER ── */
+    .chapter-text {
+      background: #fffbf3;
+      border: 1px solid rgba(160,110,30,0.2);
+      border-radius: 14px;
+      padding: 22px 26px;
+      font-size: 15px;
+      color: #2a1d0a;
+      line-height: 1.8;
+      font-family: Georgia, serif;
+      position: relative;
+    }
+    .chapter-text .part-label {
+      display: inline-block;
+      background: rgba(184,114,10,0.10);
+      border: 1px solid rgba(184,114,10,0.30);
+      color: #8a5000;
+      font-size: 11px;
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 3px 10px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+    .chapter-text p { color: #3a2a10; font-size: 15px; margin-bottom: 14px; }
+    .chapter-text .dialog { color: #7a4500; font-style: italic; }
+    .part-divider {
+      border: none;
+      border-top: 1px dashed rgba(184,114,10,0.30);
+      margin: 20px 0;
+    }
+
+    /* ── PARTS TABLE ── */
+    .parts-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+    }
+    .parts-table th {
+      background: rgba(184,114,10,0.10);
+      color: #7a4500;
+      font-weight: 700;
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .parts-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(255,220,140,0.07);
+      color: var(--sub);
+      vertical-align: top;
+    }
+    .parts-table tr:last-child td { border-bottom: none; }
+    .parts-table tr:hover td { background: rgba(184,114,10,0.05); }
+    .part-num {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    /* ── DRAG-AND-DROP ── */
+    .drag-zone {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .drag-chip {
+      background: rgba(184,114,10,0.10);
+      border: 1px solid rgba(184,114,10,0.35);
+      color: #7a4500;
+      border-radius: 20px;
+      padding: 7px 15px;
+      font-size: 13px;
+      font-family: Arial, sans-serif;
+      font-weight: 600;
+      cursor: grab;
+      user-select: none;
+      transition: all .2s;
+    }
+    .drag-chip:hover { background: rgba(184,114,10,0.20); }
+    .drag-chip.dragging { opacity: 0.4; }
+    .drop-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .drop-label { font-size: 13px; color: var(--muted); font-family: Arial, sans-serif; min-width: 80px; }
+    .drop-target {
+      min-width: 200px;
+      min-height: 40px;
+      border: 2px dashed rgba(184,114,10,0.35);
+      border-radius: 12px;
+      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      transition: border-color .2s, background .2s;
+    }
+    .drop-target.over { border-color: #b8720a; background: rgba(184,114,10,0.07); }
+    .drop-target .drag-chip { cursor: default; margin: 0; }
+    .check-btn {
+      background: #b8720a;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 9px 22px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      transition: background .2s;
+      margin-top: 10px;
+    }
+    .check-btn:hover { background: #8a5000; }
+    .drag-result { margin-top: 10px; font-size: 14px; font-family: Arial, sans-serif; display: none; padding: 10px 14px; border-radius: 10px; }
+
+    /* ── FOOTER ── */
+    .footer {
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      padding: 16px;
+      border-top: 1px solid var(--border);
+      margin-top: 12px;
+    }
+
+    @media (max-width: 580px) {
+      .wrap { padding: 16px 12px 40px; }
+      .section { padding: 18px 15px; }
+      .chapter-text { padding: 16px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <span class="header-emoji">📚</span>
+  <h1>Марк Твен<br>«Приключения Тома Сойера»</h1>
+  <p class="sub">Урок для 4 класса</p>
+</div>
+
+<!-- NAV -->
+<nav class="toc">
+  <a href="#intro">1. Введение</a>
+  <a href="#video">2. Видео</a>
+  <a href="#quiz1">3. Вопросы</a>
+  <a href="#about">4. О книге</a>
+  <a href="#chapter">5. Глава 6</a>
+  <a href="#quiz2">6. Обсуждение</a>
+  <a href="#parts">7. Смысловые части</a>
+</nav>
+
+<div class="wrap">
+
+  <!-- ─────────── 1. ВВЕДЕНИЕ ─────────── -->
+  <div class="section" id="intro">
+    <div class="label">📖 Блок 1 — Вводная часть</div>
+    <h2>О чём сегодня наш урок?</h2>
+    <p>Сегодня мы познакомимся с замечательным американским писателем <strong>Марком Твеном</strong> и его знаменитой книгой <strong>«Приключения Тома Сойера»</strong>. Мы посмотрим видео, узнаем о жизни писателя, прочитаем одну главу и вместе разберём её смысл.</p>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-icon">🎯</div>
+        <div class="card-title">Цель урока</div>
+        <div class="card-text">Познакомиться с писателем, его биографией и главными героями книги</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">📝</div>
+        <div class="card-title">Что сделаем</div>
+        <div class="card-text">Посмотрим видео, ответим на вопросы, прочитаем главу и обсудим её</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">💡</div>
+        <div class="card-title">Главная мысль</div>
+        <div class="card-text">Том Сойер — живой, смелый и находчивый мальчишка, в котором каждый узнаёт себя</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌍</div>
+        <div class="card-title">Где и когда</div>
+        <div class="card-text">Америка, XIX век, маленький городок у реки Миссисипи</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────── 2. ВИДЕО ─────────── -->
+  <div class="section" id="video">
+    <div class="label">🎬 Блок 2 — Видеоматериал</div>
+    <h2>Смотрим документальный мультфильм</h2>
+    <p>Перед тем как отвечать на вопросы — внимательно смотрим и слушаем. Обращайте внимание на <strong>настоящее имя</strong> писателя, <strong>где он вырос</strong> и <strong>как появился его псевдоним</strong>.</p>
+    <div style="background:#fffaf0;border:1px solid rgba(160,110,30,0.18);border-radius:14px;padding:18px;">
+      <p style="margin-bottom:10px;color:#4a3820;font-family:Arial,sans-serif;">Если видео не откроется без интернета, нажмите на кнопку ниже.</p>
+      <a href="https://ok.ru/video/4633584274009" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#b8720a;color:#fff;text-decoration:none;padding:10px 16px;border-radius:10px;font-family:Arial,sans-serif;font-weight:700;">Открыть видео</a>
+    </div>
+  </div>
+
+  <!-- ─────────── 3. ВОПРОСЫ ПО ВИДЕО ─────────── -->
+  <div class="section" id="quiz1">
+    <div class="label">🧠 Блок 3 — Вопросы по видео и биографии</div>
+    <h2>Проверяем себя: 5 вопросов</h2>
+    <div class="quiz-list">
+
+      <div class="q">
+        <div class="q-text">1. Как звали Марка Твена по-настоящему?</div>
+        <div class="q-btns">
+          <button class="q-btn" onclick="chk(this,'a','c')">Томас Клеменс</button>
+          <button class="q-btn" onclick="chk(this,'b','c')">Джон Твен</button>
+          <button class="q-btn" onclick="chk(this,'c','c')">Сэмюэл Клеменс</button>
+          <button class="q-btn" onclick="chk(this,'d','c')">Уильям Финн</button>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-text">2. У какой реки прошло детство Марка Твена?</div>
+        <div class="q-btns">
+          <button class="q-btn" onclick="chk(this,'a','b')">Амазонка</button>
+          <button class="q-btn" onclick="chk(this,'b','b')">Миссисипи</button>
+          <button class="q-btn" onclick="chk(this,'c','b')">Нил</button>
+          <button class="q-btn" onclick="chk(this,'d','b')">Волга</button>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-text">3. Что означает «Марк Твен» на языке речников?</div>
+        <div class="q-btns">
+          <button class="q-btn" onclick="chk(this,'a','d')">Берег близко</button>
+          <button class="q-btn" onclick="chk(this,'b','d')">Полный вперёд</button>
+          <button class="q-btn" onclick="chk(this,'c','d')">Осторожно, мель</button>
+          <button class="q-btn" onclick="chk(this,'d','d')">Глубина две сажени</button>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-text">4. Кем работал Марк Твен до того, как стал писателем?</div>
+        <div class="q-btns">
+          <button class="q-btn" onclick="chk(this,'a','a')">Лоцманом на реке и журналистом</button>
+          <button class="q-btn" onclick="chk(this,'b','a')">Учителем и врачом</button>
+          <button class="q-btn" onclick="chk(this,'c','a')">Поваром и моряком</button>
+          <button class="q-btn" onclick="chk(this,'d','a')">Художником и актёром</button>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-text">5. Как называется вторая знаменитая книга Марка Твена о жизни мальчиков?</div>
+        <div class="q-btns">
+          <button class="q-btn" onclick="chk(this,'a','b')">Робинзон Крузо</button>
+          <button class="q-btn" onclick="chk(this,'b','b')">Приключения Гекльберри Финна</button>
+          <button class="q-btn" onclick="chk(this,'c','b')">Остров сокровищ</button>
+          <button class="q-btn" onclick="chk(this,'d','b')">Оливер Твист</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─────────── 4. ВВОДНАЯ ПРО КНИГУ ─────────── -->
+  <div class="section" id="about">
+    <div class="label">📘 Блок 4 — Знакомство с книгой</div>
+    <h2>«Приключения Тома Сойера» — коротко о главном</h2>
+    <p>Книга написана в <strong>1876 году</strong>. В ней рассказывается о мальчике <strong>Томе Сойере</strong>, который живёт у тёти Полли в маленьком американском городке на берегу реки Миссисипи. Том — озорной, смелый и невероятно изобретательный: он не любит скуку и всегда придумывает себе приключения.</p>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-icon">👦</div>
+        <div class="card-title">Том Сойер</div>
+        <div class="card-text">Главный герой. Живёт у тёти Полли, обожает приключения, хитрит и мечтает о свободе</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🤠</div>
+        <div class="card-title">Гекльберри Финн</div>
+        <div class="card-text">Лучший друг Тома. Сирота, живёт свободно — все мальчишки ему завидуют</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">👧</div>
+        <div class="card-title">Бекки Тэтчер</div>
+        <div class="card-text">Новенькая девочка в школе, которая нравится Тому</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">👩</div>
+        <div class="card-title">Тётя Полли</div>
+        <div class="card-text">Воспитывает Тома. Строгая, но любящая — всё прощает своему племяннику</div>
+      </div>
+    </div>
+    <p style="margin-top:16px;">Сегодня мы читаем <strong>Главу 6</strong> — она называется <em>«Хитрость Тома»</em> (в оригинале — «Понедельник»). В этой главе Том притворяется больным, знакомится с Геком и встречает свою первую любовь — Бекки.</p>
+  </div>
+
+  <!-- ─────────── 5. ГЛАВА 6 ─────────── -->
+  <div class="section" id="chapter">
+    <div class="label">📖 Блок 5 — Чтение главы</div>
+    <h2>Глава 6 — в сокращении</h2>
+    <p style="margin-bottom:18px;">Читаем вместе по частям. Каждая часть отмечена цветной меткой — они понадобятся нам в следующем задании.</p>
+
+    <div class="chapter-text">
+
+      <!-- ЧАСТЬ 1 -->
+      <div class="part-label">📌 Часть 1 — Утро понедельника</div>
+      <p>В понедельник утром Том проснулся в самом скверном расположении духа — в этот день начиналась новая неделя, а с нею шесть дней мучений в школе. Лёжа в постели, он задумался: а что если заболеть? Он тщательно исследовал себя, но нигде не чувствовал ни малейшей боли. Вдруг вспомнил: уже несколько дней у него шатается зуб! Это можно было использовать.</p>
+      <p>Том начал громко стонать. Сид — его брат — не просыпался. Тогда Том принялся звать его и жалобно прошептал:</p>
+      <p class="dialog">— Я прощаю тебя, Сид, если ты меня когда-нибудь обидел... Когда я умру...</p>
+      <p>Сид в ужасе бросился к тёте Полли. Та прибежала и увидела Тома, который стонал «при смерти». Когда выяснилось, что у него «болит палец», тётя рассмеялась — и тут же вырвала зуб. Том был расстроен, но зато на улице стал героем дня: через дырку от зуба он мог плеваться тонкой струйкой — все завидовали!</p>
+
+      <hr class="part-divider">
+
+      <!-- ЧАСТЬ 2 -->
+      <div class="part-label">📌 Часть 2 — Встреча с Геком</div>
+      <p>По дороге в школу Том встретил Гекльберри Финна — бродягу, которого ненавидели все матери и обожали все мальчишки. Гек не ходил в школу, не ходил в церковь, никто им не командовал. В руках у него была дохлая кошка.</p>
+      <p class="dialog">— Зачем тебе дохлая кошка? — спросил Том.<br>— Как зачем? Бородавки сводить! — ответил Гек.</p>
+      <p>Мальчики принялись горячо спорить о лучших способах выведения бородавок: вода из гнилого дупла, бобы с кровью или дохлая кошка на кладбище в полночь? Гек рассказал, что этой ночью черти придут за душой грешника на кладбище, и предложил Тому пойти вместе. Том согласился. В конце встречи он обменял только что вырванный зуб на живого клеща из коробки Гека — оба были довольны.</p>
+
+      <hr class="part-divider">
+
+      <!-- ЧАСТЬ 3 -->
+      <div class="part-label">📌 Часть 3 — В школе. Знакомство с Бекки</div>
+      <p>Опоздав в школу, Том на вопрос учителя «где был?» честно ответил:</p>
+      <p class="dialog">— Я заговорился с Гекльберри Финном!</p>
+      <p>Учитель онемел от такой дерзости, а весь класс замер. За это Тома отстегали розгой и в наказание посадили к девочкам — на единственное свободное место, рядом с новенькой. Именно этого Том и добивался! Рядом с ним оказалась Бекки Тэтчер.</p>
+      <p>Том нарисовал ей дом и человечка, пообещал научить рисовать после уроков. Потом написал на грифельной доске: <strong>«Я вас люблю»</strong> — и показал Бекки. Та ударила его по руке, но улыбнулась. В этот момент учитель схватил Тома за ухо и водворил на место под хохот всего класса. Том был счастлив.</p>
+
+    </div>
+  </div>
+
+  <!-- ─────────── 6. ВОПРОСЫ ПО ГЛАВЕ ─────────── -->
+  <div class="section" id="quiz2">
+    <div class="label">💬 Блок 6 — Вопросы по главе 6</div>
+    <h2>Обсуждаем с классом</h2>
+
+    <h3 style="margin-bottom:12px;">Фактические вопросы (с вариантами)</h3>
+    <div class="quiz-list" style="margin-bottom:24px;">
+
+      <div class="q">
+        <div class="q-text">1. Почему Том не хотел идти в школу в понедельник?</div>
+        <div class="q-btns">
+          <button class="q-btn" onclick="chk(this,'a','b')">Он устал после выходных</button>
+          <button class="q-btn" onclick="chk(this,'b','b')">Школа начинала шесть дней мучений — он хотел остаться дома</button>
+          <button class="q-btn" onclick="chk(this,'c','b')">Его не пустила тётя Полли</button>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-text">2. Что сделала тётя Полли с зубом Тома?</div>
+        <div class="q-btns">
+          <button class="q-btn" onclick="chk(this,'a','b')">Дала пилюлю от боли</button>
+          <button class="q-btn" onclick="chk(this,'b','b')">Вырвала его с помощью шелковинки и столбика кровати</button>
+          <button class="q-btn" onclick="chk(this,'c','b')">Отвела к доктору</button>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-text">3. Зачем Геку нужна была дохлая кошка?</div>
+        <div class="q-btns">
+          <button class="q-btn" onclick="chk(this,'a','c')">Просто носил её с собой для удовольствия</button>
+          <button class="q-btn" onclick="chk(this,'b','c')">Хотел продать её на рынке</button>
+          <button class="q-btn" onclick="chk(this,'c','c')">Чтобы ночью на кладбище вывести бородавки</button>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-text">4. Зачем Том признался учителю, что говорил с Гекльберри Финном?</div>
+        <div class="q-btns">
+          <button class="q-btn" onclick="chk(this,'a','b')">Он не умел врать</button>
+          <button class="q-btn" onclick="chk(this,'b','b')">Это был план — его накажут и посадят к девочкам, рядом с Бекки</button>
+          <button class="q-btn" onclick="chk(this,'c','b')">Учитель уже всё знал</button>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-text">5. Что написал Том на грифельной доске Бекки?</div>
+        <div class="q-btns">
+          <button class="q-btn" onclick="chk(this,'a','b')">«Давай дружить»</button>
+          <button class="q-btn" onclick="chk(this,'b','b')">«Я вас люблю»</button>
+          <button class="q-btn" onclick="chk(this,'c','b')">«Пойдём гулять»</button>
+        </div>
+      </div>
+
+    </div>
+
+    <h3>Открытые вопросы для обсуждения</h3>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
+      <div class="open-q"><span class="num">💬</span>Том притворялся больным. Это хитрость или обман? Как вы думаете?</div>
+      <div class="open-q"><span class="num">💬</span>Почему все мальчишки завидовали Геку, хотя у него не было ни дома, ни семьи?</div>
+      <div class="open-q"><span class="num">💬</span>Том специально признался учителю, чтобы сесть рядом с Бекки. Это смело или глупо?</div>
+      <div class="open-q"><span class="num">💬</span>Что вам больше всего понравилось или удивило в этой главе?</div>
+    </div>
+  </div>
+
+  <!-- ─────────── 7. СМЫСЛОВЫЕ ЧАСТИ ─────────── -->
+  <div class="section" id="parts">
+    <div class="label">🗂️ Блок 7 — Смысловые части текста</div>
+    <h2>Определяем смысловые части</h2>
+    <p>В главе 6 можно выделить <strong>3 смысловые части</strong>. Каждая — отдельная сцена с собственным действием и смыслом. Рассмотрим их:</p>
+
+    <table class="parts-table" style="margin-bottom:24px;">
+      <thead>
+        <tr>
+          <th>Часть</th>
+          <th>Название</th>
+          <th>Основные события</th>
+          <th>Черты характера Тома</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="part-num">Часть 1</td>
+          <td style="color:var(--accent2);font-weight:700;">Утро понедельника</td>
+          <td>Том придумывает болезнь; тётя вырвала зуб; Том стал героем двора</td>
+          <td>Изобретательность, хитрость, немного трусость</td>
+        </tr>
+        <tr>
+          <td class="part-num">Часть 2</td>
+          <td style="color:var(--accent2);font-weight:700;">Встреча с Геком</td>
+          <td>Разговор о бородавках и дохлой кошке; договор идти на кладбище; обмен зуба на клеща</td>
+          <td>Любопытство, дружелюбие, жажда приключений</td>
+        </tr>
+        <tr>
+          <td class="part-num">Часть 3</td>
+          <td style="color:var(--accent2);font-weight:700;">В школе. Бекки</td>
+          <td>Том признаётся учителю, чтобы попасть к Бекки; рисует, пишет «Я вас люблю»; учитель тащит его за ухо</td>
+          <td>Смелость, находчивость, влюблённость</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>🎮 Задание: расставь части по порядку</h3>
+    <p>Перетащи карточки в нужную колонку — какое событие к какой части относится?</p>
+
+    <div class="drag-zone" id="chipZone">
+      <div class="drag-chip" draggable="true" data-part="2">Разговор о бородавках</div>
+      <div class="drag-chip" draggable="true" data-part="1">Том стонет в постели</div>
+      <div class="drag-chip" draggable="true" data-part="3">«Я вас люблю» на доске</div>
+      <div class="drag-chip" draggable="true" data-part="2">Договор идти на кладбище</div>
+      <div class="drag-chip" draggable="true" data-part="1">Тётя вырвает зуб</div>
+      <div class="drag-chip" draggable="true" data-part="3">Том сел рядом с Бекки</div>
+      <div class="drag-chip" draggable="true" data-part="2">Обмен зуба на клеща</div>
+      <div class="drag-chip" draggable="true" data-part="3">Учитель тащит за ухо</div>
+      <div class="drag-chip" draggable="true" data-part="1">Том — герой двора</div>
+    </div>
+
+    <div class="drop-row">
+      <span class="drop-label">Часть 1</span>
+      <div class="drop-target" id="drop1" data-accept="1">Перетащи сюда...</div>
+    </div>
+    <div class="drop-row">
+      <span class="drop-label">Часть 2</span>
+      <div class="drop-target" id="drop2" data-accept="2">Перетащи сюда...</div>
+    </div>
+    <div class="drop-row">
+      <span class="drop-label">Часть 3</span>
+      <div class="drop-target" id="drop3" data-accept="3">Перетащи сюда...</div>
+    </div>
+
+    <button class="check-btn" onclick="checkDrag()">Проверить ✔</button>
+    <div class="drag-result" id="dragResult"></div>
+
+    <div style="margin-top:24px;">
+      <h3>📝 Итоговый вопрос</h3>
+      <div class="open-q" style="margin-top:10px;"><span class="num">💬</span>Придумайте своё название для каждой смысловой части — можно смешное или серьёзное.</div>
+      <div class="open-q" style="margin-top:8px;"><span class="num">💬</span>Какая из трёх частей самая интересная? Почему?</div>
+      <div class="open-q" style="margin-top:8px;"><span class="num">💬</span>Как вы думаете, что произойдёт следующей ночью на кладбище?</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">Урок по произведению Марка Твена «Приключения Тома Сойера» · 4 класс</div>
+
+<script>
+  /* ── QUIZ ── */
+  function chk(btn, answer, correct) {
+    const btns = btn.closest('.q-btns').querySelectorAll('button');
+    btns.forEach(b => b.disabled = true);
+    if (answer === correct) {
+      btn.classList.add('correct');
+    } else {
+      btn.classList.add('wrong');
+      btns.forEach(b => { if (b.dataset && b.onclick && b.getAttribute('onclick').includes("'"+correct+"'")) b.classList.add('correct'); });
+      // fallback: find correct button by onclick text
+      btns.forEach(b => {
+        const oc = b.getAttribute('onclick') || '';
+        if (oc.includes(",'"+correct+"'") || oc.includes(", '"+correct+"'")) b.classList.add('correct');
+      });
+    }
+  }
+
+  /* ── DRAG AND DROP ── */
+  let draggedChip = null;
+
+  document.querySelectorAll('.drag-chip').forEach(chip => {
+    chip.addEventListener('dragstart', e => {
+      draggedChip = chip;
+      chip.classList.add('dragging');
+    });
+    chip.addEventListener('dragend', () => {
+      chip.classList.remove('dragging');
+    });
+  });
+
+  document.querySelectorAll('.drop-target').forEach(zone => {
+    zone.addEventListener('dragover', e => {
+      e.preventDefault();
+      zone.classList.add('over');
+    });
+    zone.addEventListener('dragleave', () => zone.classList.remove('over'));
+    zone.addEventListener('drop', e => {
+      e.preventDefault();
+      zone.classList.remove('over');
+      if (draggedChip) {
+        // remove placeholder text
+        if (zone.childNodes.length === 1 && zone.childNodes[0].nodeType === 3) zone.innerHTML = '';
+        const clone = draggedChip.cloneNode(true);
+        clone.draggable = false;
+        clone.style.cursor = 'default';
+        zone.appendChild(clone);
+        draggedChip.remove();
+        draggedChip = null;
+      }
+    });
+  });
+
+  function checkDrag() {
+    let correct = 0, total = 0;
+    [1, 2, 3].forEach(n => {
+      const zone = document.getElementById('drop'+n);
+      zone.querySelectorAll('.drag-chip').forEach(chip => {
+        total++;
+        if (chip.dataset.part == n) {
+          correct++;
+          chip.style.outline = '2px solid rgba(34,197,94,0.7)';
+        } else {
+          chip.style.outline = '2px solid rgba(239,68,68,0.7)';
+        }
+      });
+    });
+    const res = document.getElementById('dragResult');
+    res.style.display = 'block';
+    if (correct === total && total > 0) {
+      res.style.background = 'rgba(34,197,94,0.15)';
+      res.style.color = '#86efac';
+      res.innerHTML = '🎉 Отлично! Все ' + total + ' карточек расставлены верно!';
+    } else {
+      res.style.background = 'rgba(239,160,32,0.12)';
+      res.style.color = '#f5d87e';
+      res.innerHTML = '✏️ Правильно: ' + correct + ' из ' + total + '. Красные карточки — не на своём месте. Попробуй ещё раз!';
+    }
+  }
+</script>
+</body>
+</html>
